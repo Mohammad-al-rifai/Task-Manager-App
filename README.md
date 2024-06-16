@@ -39,12 +39,10 @@ A robust and intuitive Task Management System built with Flutter. This system al
 ## Install dependencies:
 
 sh
-Copy code
 flutter pub get
 Run the app:
 
 sh
-Copy code
 flutter run
 
 
@@ -63,19 +61,16 @@ To run the tests for this project:
 Navigate to the test folder:
 
 sh
-Copy code
 cd test
 Run the tests:
 
 sh
-Copy code
 flutter test
 
 ## Folder Structure
 Here's an overview of the project's folder structure:
 
 kotlin
-Copy code
 task-management-system/
 ├── lib/
 │   ├── core/
@@ -95,11 +90,11 @@ task-management-system/
 ├── README.md
 ├── pubspec.yaml
 
-## lib: Contains the main application code.
-## test: Contains the test cases.
-## screenshots: Contains images used in the README.
-## README.md: The README file in the root directory.
-## pubspec.yaml: Flutter project dependencies and configuration.
+lib: Contains the main application code.
+test: Contains the test cases.
+screenshots: Contains images used in the README.
+README.md: The README file in the root directory.
+pubspec.yaml: Flutter project dependencies and configuration.
 
  ## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure your code follows the project's coding standards and includes tests for new functionalities.

@@ -34,17 +34,21 @@ A robust and intuitive Task Management System built with Flutter. This system al
   <img src="screenshots/profile.png" alt="Task Details Screen" width="200">
 </p>
 
-
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-username/task-management-system.git
+   cd task-management-system ```
 
 ## Install dependencies:
 
-sh
+```sh
 flutter pub get
+```
+
 Run the app:
-
-sh
+```sh
 flutter run
-
+```
 
 ## Usage
 After installing the app, you can use it as follows:
@@ -59,13 +63,14 @@ View Task Details: Click on a task to see its details.
 To run the tests for this project:
 
 Navigate to the test folder:
-
-sh
+```sh
 cd test
-Run the tests:
+```
 
-sh
+Run the tests:
+```sh
 flutter test
+```
 
 ## Folder Structure
 Here's an overview of the project's folder structure:

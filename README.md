@@ -80,33 +80,15 @@ flutter test
 ## Folder Structure
 Here's an overview of the project's folder structure:
 
-kotlin
-
+Dart
+## task-management-system/
 
 - `lib/` contains the main application code organized into `core/`, `data/`, `domain/`, and `presentation/` directories, with `main.dart` as the entry point.
 - `test/` contains corresponding test files for each module under `core/`, `data/`, `domain/`, and `presentation/`.
 - `screenshots/` holds image files used in the README.
 - `README.md` is your Markdown file containing project documentation.
 - `pubspec.yaml` is where Flutter dependencies and configuration are defined.
-
-task-management-system/
-├── lib/
-│   ├── core/
-│   ├── data/
-│   ├── domain/
-│   ├── presentation/
-│   └── main.dart
-├── test/
-│   ├── core/
-│   ├── data/
-│   ├── domain/
-│   ├── presentation/
-├── screenshots/
-│   ├── login.png
-│   ├── task_list.png
-│   ├── task_details.png
-├── README.md
-├── pubspec.yaml
+- 
 
 lib: Contains the main application code.
 test: Contains the test cases.

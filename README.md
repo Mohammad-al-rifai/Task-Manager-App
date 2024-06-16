@@ -40,7 +40,8 @@ To get started with this project, follow these steps:
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/your-username/task-management-system.git
-   cd task-management-system ```
+   cd task-management-system
+   ```
 
 
 2. **Install dependencies:**

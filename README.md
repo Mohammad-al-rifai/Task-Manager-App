@@ -39,13 +39,14 @@ A robust and intuitive Task Management System built with Flutter. This system al
    git clone https://github.com/your-username/task-management-system.git
    cd task-management-system ```
 
-## Install dependencies:
 
+2. **Install dependencies:**
 ```sh
 flutter pub get
 ```
 
-Run the app:
+
+3. **Run the app:**
 ```sh
 flutter run
 ```

@@ -1,4 +1,5 @@
-# Task Management System
+# Task Management System - Mohammad AlRefaie - Maids.cc
+# 00971 56 756 1512  - UAE-Dubai
 
 Task manager app using Flutter that allows users to manage their tasks efficiently.
 

@@ -34,6 +34,9 @@ A robust and intuitive Task Management System built with Flutter. This system al
   <img src="screenshots/profile.png" alt="Task Details Screen" width="200">
 </p>
 
+## Installation
+To get started with this project, follow these steps:
+
 1. **Clone the repository:**
    ```sh
    git clone https://github.com/your-username/task-management-system.git

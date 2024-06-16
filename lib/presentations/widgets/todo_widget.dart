@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../core/utils/components/my_text.dart';
 import '../../core/utils/resources/color_manager.dart';
 import '../../core/utils/resources/values_manager.dart';
-import '../../domain/models/todos/todos_model.dart';
+import '../../domain/models/responses/todos/todos_model.dart';
 
 class TodoWidget extends StatelessWidget {
   const TodoWidget({

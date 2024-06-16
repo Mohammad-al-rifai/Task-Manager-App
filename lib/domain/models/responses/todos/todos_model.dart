@@ -11,7 +11,7 @@ class TodosModel {
   final num? skip;
   final num? limit;
 
-  factory TodosModel.fromJson(Map<String, dynamic> json) {
+  factory TodosModel.fromMap(Map<String, dynamic> json) {
     return TodosModel(
       todos: json["todos"] == null
           ? []

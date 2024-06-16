@@ -2,18 +2,21 @@ import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils/constants/constants_manager.dart';
-import '../../../core/utils/constants/urls.dart';
-import '../../../core/utils/functions/functions.dart';
+
+import '../../../core/utils/resources/data_state.dart';
 import '../../../core/utils/resources/strings_manager.dart';
 import '../../../data/datasources/local/cache/cache_helper.dart';
 import '../../../data/datasources/local/cache/keys.dart';
-import '../../../data/datasources/remote/dio_helper.dart';
-import '../../../domain/models/auth_models/user_model.dart';
+import '../../../domain/models/responses/auth_models/user_model.dart';
+import '../../../domain/repositories/auth_repository.dart';
+import '../base/base_cubit.dart';
 
 part 'auth_states.dart';
 
-class AuthCubit extends Cubit<AuthStates> {
-  AuthCubit() : super(AuthInitialState());
+class AuthCubit extends BaseCubit<AuthStates, UserModel> {
+  AuthCubit(this._authRepository) : super(AuthInitialState(), UserModel());
+
+  final AuthRepository _authRepository;
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
@@ -25,15 +28,16 @@ class AuthCubit extends Cubit<AuthStates> {
     required String password,
   }) async {
     emit(LoginLoadingState());
-    DioHelper.instance.postData(
-      url: Urls.login,
-      data: {
-        "username": userName,
-        "password": password,
-      },
-    ).then(
-      (value) {
-        userModel = UserModel.fromJson(value.data);
+
+    if (isBusy) return;
+
+    await run(() async {
+      final response = await _authRepository.login(
+        username: userName,
+        password: password,
+      );
+      if (response is DataSuccess) {
+        userModel = response.data ?? UserModel();
         if (userModel.token != null) {
           // Save Token Here:
           CacheHelper.saveData(
@@ -106,10 +110,9 @@ class AuthCubit extends Cubit<AuthStates> {
           emit(LoginDoneState(userModel: userModel));
           updateConstData();
         }
-      },
-    ).catchError((error) {
-      myPrint(text: "Error Is LogIn Error: ${error.toString()}");
-      emit(LoginErrorState(errorMSG: AppStrings.error));
+      } else if (response is DataFailed) {
+        emit(LoginErrorState(errorMSG: AppStrings.error));
+      }
     });
   }
 

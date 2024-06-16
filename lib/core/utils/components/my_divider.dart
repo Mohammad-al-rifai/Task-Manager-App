@@ -5,12 +5,12 @@ import '../resources/color_manager.dart';
 
 class MyDivider extends StatelessWidget {
   MyDivider({
-    Key? key,
+    super.key,
     this.width,
     this.margin,
     this.alignment,
     this.color,
-  }) : super(key: key);
+  });
 
   double? width;
   double? margin;

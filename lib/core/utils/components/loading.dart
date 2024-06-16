@@ -5,13 +5,13 @@ import '../resources/assets_manager.dart';
 
 class DefaultLoading extends StatelessWidget {
   const DefaultLoading({
-    Key? key,
+    super.key,
     this.xT = 0.0,
     this.yT = 0.0,
     this.size,
     this.basic = true,
     this.isCenter = true,
-  }) : super(key: key);
+  });
 
   final double xT;
   final double yT;

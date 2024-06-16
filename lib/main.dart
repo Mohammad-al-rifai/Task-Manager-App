@@ -9,12 +9,14 @@ import 'core/utils/functions/functions.dart';
 import 'data/datasources/local/cache/cache_helper.dart';
 import 'data/datasources/local/cache/keys.dart';
 import 'data/datasources/remote/dio_helper.dart';
+import 'locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   await CacheHelper.init();
   DioHelper.init();
+  await initializeDependencies();
   Bloc.observer = MyBlocObserver();
   Constants.token = CacheHelper.getData(key: CacheHelperKeys.token) ?? "";
   Constants.fullName = CacheHelper.getData(key: CacheHelperKeys.fullName) ?? "";

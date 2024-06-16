@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 
 import '../resources/color_manager.dart';
-import '../resources/styles_manager.dart';
-import '../resources/values_manager.dart';
 import 'loading.dart';
 
 class DefaultButton extends StatelessWidget {

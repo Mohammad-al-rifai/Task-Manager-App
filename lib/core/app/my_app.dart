@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../domain/repositories/api_repository.dart';
+import '../../domain/repositories/auth_repository.dart';
+import '../../locator.dart';
 import '../../presentations/cubits/app_cubit/app_cubit.dart';
 import '../../presentations/cubits/auth_cubit/auth_cubit.dart';
-import '../../presentations/cubits/todo_cubit/to_do_cubit.dart';
+import '../../presentations/cubits/remote_todos_cubit/remote_todos_cubit.dart';
 import '../../presentations/view/splash/splash_view.dart';
 import '../themes/themes_manager.dart';
 import '../utils/functions/functions.dart';
@@ -29,9 +32,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => AuthCubit(locator<AuthRepository>())),
         BlocProvider(create: (context) => AppCubit()),
-        BlocProvider(create: (context) => ToDoCubit()..getTodos(reset: true)),
+        BlocProvider(
+          create: (context) => RemoteTodosCubit(
+            locator<ApiRepository>(),
+          )..getTodosList(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: Size(getScreenWidth(context), getScreenHeight(context)),

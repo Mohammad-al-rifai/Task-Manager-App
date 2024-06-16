@@ -21,7 +21,7 @@ class UserModel {
   final String? token;
   final String? refreshToken;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
       id: json["id"],
       username: json["username"],

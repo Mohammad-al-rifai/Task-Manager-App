@@ -8,8 +8,8 @@ import '../../../core/utils/components/loading.dart';
 import '../../../core/utils/components/my_listview.dart';
 import '../../../core/utils/components/my_text.dart';
 import '../../../core/utils/resources/strings_manager.dart';
-import '../../../domain/models/todos/todos_model.dart';
-import '../../cubits/todo_cubit/to_do_cubit.dart';
+import '../../../domain/models/responses/todos/todos_model.dart';
+import '../../cubits/remote_todos_cubit/remote_todos_cubit.dart';
 import '../../widgets/todo_widget.dart';
 
 class MyTasksView extends StatefulWidget {
@@ -20,11 +20,11 @@ class MyTasksView extends StatefulWidget {
 }
 
 class _MyTasksViewState extends State<MyTasksView> {
-  late ToDoCubit cubit;
+  late RemoteTodosCubit cubit;
 
   @override
   void initState() {
-    cubit = ToDoCubit.get(context);
+    cubit = RemoteTodosCubit.get(context);
     cubit.getMyTasks();
     super.initState();
   }
@@ -44,31 +44,37 @@ class _MyTasksViewState extends State<MyTasksView> {
   }
 
   Widget getBody() {
-    return BlocConsumer<ToDoCubit, ToDoStates>(
+    return BlocConsumer<RemoteTodosCubit, RemoteTodosStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        if (state is GetMyTasksLoadingState) {
-          return const DefaultLoading();
-        }
-        if (state is GetMyTasksErrorState) {
-          return const DefaultError();
-        }
-        return Conditional.single(
-            context: context,
-            conditionBuilder: (context) => cubit.myTasks.isNotEmpty,
-            widgetBuilder: (context) {
-              return MyListView<Todo>(
-                fetchData: () => cubit.getMyTasks(),
-                list: cubit.myTasks,
-                noMoreData: true,
-                itemBuilder: (BuildContext context, Todo todo) {
-                  return TodoWidget(todo: todo);
+        switch (state.runtimeType) {
+          case const (RemoteTodosLoading):
+            return const DefaultLoading();
+
+          case const (RemoteTodosFailed):
+            return const DefaultError();
+
+          case const (RemoteTodosSuccess):
+            return Conditional.single(
+                context: context,
+                conditionBuilder: (context) => state.todos.isNotEmpty,
+                widgetBuilder: (context) {
+                  return MyListView<Todo>(
+                    fetchData: () => cubit.getMyTasks(),
+                    list: state.todos,
+                    noMoreData: true,
+                    itemBuilder: (BuildContext context, Todo todo) {
+                      return TodoWidget(todo: todo);
+                    },
+                  );
                 },
-              );
-            },
-            fallbackBuilder: (context) {
-              return const DefaultEmpty();
-            });
+                fallbackBuilder: (context) {
+                  return const DefaultEmpty();
+                });
+
+          default:
+            return const SizedBox();
+        }
       },
     );
   }

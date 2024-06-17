@@ -31,6 +31,7 @@ dependencies:
   animate_do: ^3.3.4
   get_it: ^7.7.0
   retrofit: ^4.1.0
+  equatable: ^2.0.5
 
   cupertino_icons: ^1.0.6
 
@@ -39,8 +40,12 @@ dev_dependencies:
     sdk: flutter
   retrofit_generator: ^8.1.0
   build_runner: ^2.4.11
-
   flutter_lints: ^3.0.0
+
+  # Dependencies 4 Testing
+  bloc_test: ^9.1.7
+  mockito: ^5.4.4
+  mocktail: ^1.0.4
 
 
 

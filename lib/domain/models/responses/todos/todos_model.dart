@@ -1,5 +1,7 @@
-class TodosModel {
-  TodosModel({
+import 'package:equatable/equatable.dart';
+
+class TodosModel extends Equatable {
+  const TodosModel({
     this.todos,
     this.total,
     this.skip,
@@ -33,10 +35,13 @@ class TodosModel {
   String toString() {
     return "$todos, $total, $skip, $limit, ";
   }
+
+  @override
+  List<Object?> get props => [todos, total, skip, limit];
 }
 
-class Todo {
-  Todo({
+class Todo extends Equatable {
+  const Todo({
     this.id,
     this.todo,
     this.completed,
@@ -68,4 +73,7 @@ class Todo {
   String toString() {
     return "$id, $todo, $completed, $userId, ";
   }
+
+  @override
+  List<Object?> get props => [id, todo, completed, userId];
 }
